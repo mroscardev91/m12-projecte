@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
+from config import Config 
 
 db_manager = SQLAlchemy()
 
@@ -8,9 +9,8 @@ def create_app():
     # Construct the core app object
     app = Flask(__name__)
 
-    # Secret key
-    app.config["SECRET_KEY"] = "Valor aleatori molt llarg i super secret"
-
+    # Configura la aplicación con la clase Config de config.py
+    app.config.from_object(Config)
     # ruta absoluta d'aquesta carpeta
     basedir = os.path.abspath(os.path.dirname(__file__)) 
 

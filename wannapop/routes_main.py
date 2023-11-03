@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 from . import db_manager as db
 import uuid
 import os
+from config import Config
 
 # Blueprint
 main_bp = Blueprint(
@@ -111,7 +112,7 @@ def product_delete(product_id):
         return render_template('products/delete.html', form = form, product = product)
 
 
-__uploads_folder = os.path.abspath(os.path.dirname(__file__)) + "/static/products/"
+__uploads_folder = os.path.join(Config.BASEDIR, Config.IMAGES_UPLOAD_PATH)
 
 def __manage_photo_file(photo_file):
     # si hi ha fitxer
