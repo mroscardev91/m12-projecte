@@ -53,34 +53,3 @@ CREATE TABLE confirmed_orders (
 	FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
---
--- Dades FAKE
---
--- Inserir dades fictícies a la taula categories
-INSERT INTO categories (id, name, slug) VALUES
-(1, 'Electrònica', 'electronica'),
-(2, 'Roba', 'roba'),
-(3, 'Joguines', 'joguines');
-UPDATE SQLITE_SEQUENCE SET seq = 3 WHERE name = 'categories';
-
-
--- Inserir dades fictícies a la taula users
-INSERT INTO users (id, name, email, password) VALUES
-(1, 'Joan Pérez', 'joan@example.com', 'contrasenya1'),
-(2, 'Anna García', 'anna@example.com', 'contrasenya2'),
-(3, 'Elia Rodríguez', 'elia@example.com', 'contrasenya3');
-UPDATE SQLITE_SEQUENCE SET seq = 3 WHERE name = 'users';
-
--- Inserir dades fictícies a la taula products
-INSERT INTO products (id, title, description, photo, price, category_id, seller_id) VALUES
-(1, 'Telèfon mòbil', 'Un telèfon intel·ligent d''última generació.', 'no_image.png', 599.99, 1, 1),
-(2, 'Samarreta', 'Una samarreta de cotó de color blau.', 'no_image.png', 19.99, 2, 2),
-(3, 'Ninot de peluix', 'Un ninot de peluix suau.', 'no_image.png', 9.99, 3, 3);
-UPDATE SQLITE_SEQUENCE SET seq = 3 WHERE name = 'products';
-
--- Inserir dades fictícies a la taula orders
-INSERT INTO orders (id, product_id, buyer_id) VALUES
-(1, 1, 2),
-(2, 2, 1),
-(3, 3, 3);
-UPDATE SQLITE_SEQUENCE SET seq = 3 WHERE name = 'orders';
