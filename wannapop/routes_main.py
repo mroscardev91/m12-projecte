@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
 from .models import Product, Category
-from .forms import ProductForm, DeleteForm
+from .forms import ProductForm, DeleteForm, RegisterForm, LoginForm
 from werkzeug.utils import secure_filename
 from . import db_manager as db
 import uuid
@@ -14,7 +14,39 @@ main_bp = Blueprint(
 
 @main_bp.route('/')
 def init():
-    return redirect(url_for('main_bp.product_list'))
+    #return redirect(url_for('main_bp.product_list'))
+    return render_template('layout.html')
+
+@main_bp.route('/login', methods=['GET', 'POST'])
+def auth_login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        username = form.username.data
+        password = form.password.data
+
+        # Aquí deberías añadir la lógica para verificar las credenciales del usuario
+        # Por ejemplo:
+        # user = User.query.filter_by(username=username).first()
+        # if user and user.check_password(password):
+        #     # Iniciar sesión del usuario
+        #     # Redirigir al usuario a su página de perfil o de inicio
+        # else:
+        #     flash('Nombre de usuario o contraseña incorrectos', 'error')
+
+        return redirect(url_for('main_bp.init'))
+    return render_template('auth/login.html', form = form)
+
+@main_bp.route('/register', methods=['GET', 'POST'])
+def auth_register():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        # Aquí puedes añadir la lógica para manejar los datos del formulario
+        pass
+    #return redirect(url_for('main_bp.product_list'))
+    return render_template('auth/register.html', form = form)
+
+
+
 
 @main_bp.route('/products/list')
 def product_list():

@@ -4,16 +4,17 @@ from wtforms.validators import DataRequired, NumberRange, InputRequired, Email
 import decimal
 
 class RegisterForm(FlaskForm):
-    name = StringField(
-        validators = [DataRequired()]
-    )
-    email = StringField(
-        validators = [Email(), DataRequired()]
-    )
-    password = PasswordField(
-        validators=[ DataRequired()]
-    )
-    submit = SubmitField()
+    name = StringField('Nombre', validators=[DataRequired()])
+    email = StringField('Correo Electrónico', validators=[Email(), DataRequired()])
+    password = PasswordField('Contraseña', validators=[DataRequired()])
+    submit = SubmitField('Registrarse')
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Nombre de Usuario', validators=[DataRequired()])
+    password = PasswordField('Contraseña', validators=[DataRequired()])
+    submit = SubmitField('Iniciar Sesión')
+
 
 class ProductForm(FlaskForm):
     title = StringField(
