@@ -2,13 +2,16 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 import os
 from config import Config 
+from flask_login import LoginManager
 
 db_manager = SQLAlchemy()
+login_manager = LoginManager()
+
 
 def create_app():
     # Construct the core app object
     app = Flask(__name__)
-
+    login_manager.init_app(app)
     # Configura la aplicación con la clase Config de config.py
     app.config.from_object(Config)
     # ruta absoluta d'aquesta carpeta
@@ -21,12 +24,13 @@ def create_app():
 
     # Inicialitza els plugins
     db_manager.init_app(app)
-
+    
     with app.app_context():
-        from . import routes_main
+        from . import routes_main, routes_auth
 
         # Registra els blueprints
         app.register_blueprint(routes_main.main_bp)
+        app.register_blueprint(routes_auth.auth_bp)
 
     app.logger.info("Aplicació iniciada")
 

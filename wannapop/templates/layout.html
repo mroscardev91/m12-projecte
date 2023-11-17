@@ -42,15 +42,15 @@
         </div>
         <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
           <ul class="list-reset lg:flex justify-end flex-1 items-center">
-            {% if g.user %}
-              <li><span>{{ g.user['username'] }}</span>
-              <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+            {% if current_user.is_authenticated %}
+              <li><span class="mx-auto lg:mx-0 hover:underline  text-gray-800 font-bold  mt-4 lg:mt-0 py-4 px-8  opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Benvingut,  {{ current_user.name }}</span>
+              <li><a class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" href="{{ url_for('auth_bp.auth_logout') }}">Log Out</a>
             {% else %}
               <li class="mr-3">
-                <a class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" href="{{ url_for('main_bp.auth_register') }}">Register</a>
+                <a class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" href="{{ url_for('auth_bp.auth_register') }}">Register</a>
               </li>
               <li class="mr-3">
-                <a class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" href="{{ url_for('main_bp.auth_login') }}">Login</a>
+                <a class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" href="{{ url_for('auth_bp.auth_login') }}">Login</a>
               </li>
             {% endif %}
           </ul>
@@ -72,9 +72,9 @@
             <p class="leading-normal text-2xl mb-8">
               Sabiendo programar se puede hacer magia
             </p>
-            <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-              Invierte
-            </button>
+            <a href="/products/list" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              Lista de productos
+            </a>
           </div>
           <!--Right Col-->
           <div class="w-full md:w-3/5 py-6 text-center">
