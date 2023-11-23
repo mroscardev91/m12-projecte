@@ -7,6 +7,7 @@ import uuid
 import os
 from config import Config
 from flask_login import login_required, current_user
+from .security import require_view_permission, require_edit_permission, require_create_permission, require_delete_permission
 
 # Blueprint
 main_bp = Blueprint(
@@ -20,6 +21,7 @@ def init():
 
 
 @main_bp.route('/products/list')
+@require_view_permission.require(http_exception=403)
 def product_list():
     # select amb join que retorna una llista dwe resultats
     products_with_category = db.session.query(Product, Category).join(Category).order_by(Product.id.asc()).all()
@@ -28,6 +30,7 @@ def product_list():
 
 @main_bp.route('/products/create', methods = ['POST', 'GET'])
 @login_required
+@require_create_permission.require(http_exception=403)
 def product_create(): 
 
     # select que retorna una llista de resultats
@@ -63,6 +66,7 @@ def product_create():
 
 @main_bp.route('/products/read/<int:product_id>')
 @login_required
+@require_view_permission.require(http_exception=403)
 def product_read(product_id):
     # select amb join i 1 resultat
     (product, category) = db.session.query(Product, Category).join(Category).filter(Product.id == product_id).one()
@@ -71,6 +75,7 @@ def product_read(product_id):
 
 @main_bp.route('/products/update/<int:product_id>',methods = ['POST', 'GET'])
 @login_required
+@require_edit_permission.require(http_exception=403)
 def product_update(product_id):
     # select amb 1 resultat
     product = db.session.query(Product).filter(Product.id == product_id).one()
@@ -103,6 +108,7 @@ def product_update(product_id):
 
 @main_bp.route('/products/delete/<int:product_id>',methods = ['GET', 'POST'])
 @login_required
+@require_delete_permission.require(http_exception=403)
 def product_delete(product_id):
     # select amb 1 resultat
     product = db.session.query(Product).filter(Product.id == product_id).one()
