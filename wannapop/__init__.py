@@ -13,7 +13,6 @@ principal_manager =  Principal()
 def create_app():
     # Construct the core app object
     app = Flask(__name__)
-    login_manager.init_app(app)
     # Configura la aplicación con la clase Config de config.py
     app.config.from_object(Config)
     # ruta absoluta d'aquesta carpeta
