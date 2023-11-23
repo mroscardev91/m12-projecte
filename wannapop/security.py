@@ -29,7 +29,8 @@ __delete_action_need = ActionNeed(Action.delete)
 # Permissions
 require_wanner_role = Permission(__wanner_role_need)
 require_admin_role = Permission(__admin_role_need)
-require_moderator_role = Permission(__moderator_role_need)
+require_moderator_role= Permission(__moderator_role_need)
+require_admin_or_wanner_role = Permission(__wanner_role_need), Permission(__moderator_role_need)
 
 require_edit_permission = Permission(__edit_action_need)
 require_view_permission = Permission(__view_action_need)
