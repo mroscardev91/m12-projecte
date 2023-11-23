@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, render_template, url_for, flash, request
 from .forms import RegisterForm, LoginForm
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from . import login_manager
 from .models import User
 from .forms import LoginForm
@@ -10,6 +10,11 @@ from werkzeug.security import generate_password_hash, check_password_hash
 auth_bp = Blueprint(
     "auth_bp", __name__, template_folder="templates", static_folder="static"
 )
+
+@auth_bp.route('/profile')
+@login_required
+def profile():
+    return render_template('auth/profile.html', user=current_user)
 
 @login_manager.user_loader
 def load_user(user_id):

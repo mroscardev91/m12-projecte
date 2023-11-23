@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+
+
+{% block content %}
+
+
+<div class="flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Perfil de l'Usuari</h2>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Nom:</label>
+            <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.name }}</p>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Correu electrònic:</label>
+            <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.email }}</p>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Rol:</label>
+            <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.role }}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
