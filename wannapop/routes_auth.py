@@ -36,7 +36,7 @@ def auth_register():
     form = RegisterForm()
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data)
-        new_user = User(name=form.username.data, email=form.email.data, password=hashed_password)
+        new_user = User(name=form.username.data, email=form.email.data, password=hashed_password, role='wanner')
         
         db.session.add(new_user)
         db.session.commit()
