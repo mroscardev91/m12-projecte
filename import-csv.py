@@ -20,7 +20,7 @@ def import_csv_to_table(csv_file_path, table_name, columns):
 
 # Ejemplo de cómo llamar a la función para cada tabla
 import_csv_to_table('csv/categories.csv', 'categories', ['name', 'slug'])
-import_csv_to_table('csv/users.csv', 'users', ['name', 'email', 'password'])
+import_csv_to_table('csv/users.csv', 'users', ['name', 'email', 'password', 'role'])
 import_csv_to_table('csv/products.csv', 'products', ['title', 'description', 'photo', 'price', 'category_id', 'seller_id'])
 # ... y así sucesivamente para las demás tablas
 

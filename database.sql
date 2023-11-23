@@ -15,6 +15,7 @@ CREATE TABLE users (
 	name TEXT UNIQUE,
 	email TEXT UNIQUE,
 	password TEXT,
+	role TEXT,
 	created DATETIME NOT NULL DEFAULT (DATETIME('now')),
 	updated DATETIME NOT NULL DEFAULT (DATETIME('now'))
 

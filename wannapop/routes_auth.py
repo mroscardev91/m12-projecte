@@ -25,7 +25,7 @@ def auth_login():
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
             next_page = request.args.get('next')
-            return redirect(next_page or url_for('main_bp.product_list'))  # Canvia 'main_bp.home' amb la teva ruta d'inici
+            return redirect(next_page or url_for('main_bp.product_list'))  
         else:
             flash('Login fallit. Si us plau, comprova el teu email i contrasenya', 'danger')
     
