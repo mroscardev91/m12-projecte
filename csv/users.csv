@@ -1,7 +1,7 @@
 name,email,password,role
-Austin,aclowton0@amazon.com,zN1'4n?`i$kA)eh,admin
-Rivi,rphysic1@home.pl,gR0/%\6io,moderator
-Maurizio,mhathorn2@intel.com,"aF1""lV>Bq",wanner
+Austin,aclowton0@amazon.com,pbkdf2:sha256:600000$B07HTrrJDXn0t9wE$d7927e4234bfc08b5531adfdab6e7d61de7b4fa749876f87cf4d1381f3a9eef0,admin
+Rivi,rphysic1@home.pl,pbkdf2:sha256:600000$B07HTrrJDXn0t9wE$d7927e4234bfc08b5531adfdab6e7d61de7b4fa749876f87cf4d1381f3a9eef0,moderator
+Maurizio,mhathorn2@intel.com,"pbkdf2:sha256:600000$B07HTrrJDXn0t9wE$d7927e4234bfc08b5531adfdab6e7d61de7b4fa749876f87cf4d1381f3a9eef0",wanner
 Brien,bambrozewicz3@mail.ru,wS8`@}1z'#f'u@,admin
 Kassandra,kbittany4@instagram.com,vW9/?7Q=`qi,moderator
 Melicent,mway5@prweb.com,rE2#i_Wl,wanner

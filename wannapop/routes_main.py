@@ -7,7 +7,7 @@ import uuid
 import os
 from config import Config
 from flask_login import login_required, current_user
-from .security import require_view_permission, require_edit_permission, require_create_permission, require_delete_permission
+from .security import require_view_permission, require_edit_permission, require_create_permission, require_delete_permission    
 
 # Blueprint
 main_bp = Blueprint(
@@ -21,6 +21,7 @@ def init():
 
 
 @main_bp.route('/products/list')
+@login_required
 @require_view_permission.require(http_exception=403)
 def product_list():
     # select amb join que retorna una llista dwe resultats

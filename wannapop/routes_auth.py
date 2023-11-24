@@ -6,6 +6,7 @@ from .models import User
 from .forms import LoginForm
 from . import db_manager as db
 from werkzeug.security import generate_password_hash, check_password_hash
+from .security import notify_identity_changed
 
 auth_bp = Blueprint(
     "auth_bp", __name__, template_folder="templates", static_folder="static"
@@ -29,6 +30,7 @@ def auth_login():
         user = User.query.filter_by(name=form.username.data).first()
         if user and check_password_hash(user.password, form.password.data):
             login_user(user)
+            notify_identity_changed()
             next_page = request.args.get('next')
             return redirect(next_page or url_for('main_bp.product_list'))  
         else:

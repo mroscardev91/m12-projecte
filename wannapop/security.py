@@ -65,3 +65,11 @@ def on_identity_loaded(sender, identity):
             identity.provides.add(__delete_action_need)
         else:
             current_app.logger.debug("Unkown role")
+
+def notify_identity_changed():
+    if hasattr(current_user, 'email'):
+        identity = Identity(current_user.email)
+    else:
+        identity = AnonymousIdentity()
+    
+    identity_changed.send(current_app._get_current_object(), identity = identity)

@@ -8,7 +8,7 @@ from flask_principal import Principal
 
 db_manager = SQLAlchemy()
 login_manager = LoginManager()
-principal_manager =  Principal()
+principal_manager = Principal()
 
 def create_app():
     # Construct the core app object
