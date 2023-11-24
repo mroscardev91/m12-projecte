@@ -19,6 +19,12 @@
 	</tr>
 	{% endfor %}
 </table>
-<a href="/products/create">Crear un nou producte</a>
+
+{% if 'create' in permissions %}
+    <!-- Botó de Modificar -->
+    <a href="/products/create">Crear un nou producte</a>
+{% endif %}
+
+
 
 {% endblock %}
