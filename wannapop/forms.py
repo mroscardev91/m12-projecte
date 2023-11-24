@@ -42,3 +42,7 @@ class DeleteForm(FlaskForm):
 class ResendVerificationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Reenviar Enllaç de Verificació')
+
+class EditProfileForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Actualitzar')
