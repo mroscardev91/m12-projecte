@@ -7,6 +7,10 @@ from .forms import LoginForm
 from . import db_manager as db
 from werkzeug.security import generate_password_hash, check_password_hash
 from .security import notify_identity_changed
+import secrets
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 auth_bp = Blueprint(
     "auth_bp", __name__, template_folder="templates", static_folder="static"
@@ -29,10 +33,14 @@ def auth_login():
     if form.validate_on_submit():
         user = User.query.filter_by(name=form.username.data).first()
         if user and check_password_hash(user.password, form.password.data):
-            login_user(user)
-            notify_identity_changed()
-            next_page = request.args.get('next')
-            return redirect(next_page or url_for('main_bp.product_list'))  
+            if user.verified:
+                login_user(user)
+                notify_identity_changed()
+                next_page = request.args.get('next')
+                return redirect(next_page or url_for('main_bp.product_list'))
+            else:
+                flash('Please verify your email address', 'warning')
+                return redirect(url_for('main_bp.init'))  
         else:
             flash('Login fallit. Si us plau, comprova el teu email i contrasenya', 'danger')
     
@@ -41,13 +49,15 @@ def auth_login():
 @auth_bp.route('/register', methods=['GET', 'POST'])
 def auth_register():
     form = RegisterForm()
+    token = secrets.token_urlsafe(20)
     if form.validate_on_submit():
         hashed_password = generate_password_hash(form.password.data)
-        new_user = User(name=form.username.data, email=form.email.data, password=hashed_password, role='wanner')
+        new_user = User(name=form.username.data, email=form.email.data, password=hashed_password, role='wanner', email_token=token, verified = 0)
         
         db.session.add(new_user)
         db.session.commit()
 
+        send_verification_email(new_user.email, new_user.name, token)
         flash('Registre completat amb èxit. Ara pots iniciar sessió.', 'success')
         return redirect(url_for('auth_bp.auth_login'))  # Redirigeix a la pàgina de login
     #return redirect(url_for('main_bp.product_list'))
@@ -58,4 +68,43 @@ def auth_logout():
     logout_user()
     flash('Sessió tancada correctament', 'success')
     return redirect(url_for('auth_bp.auth_login')) 
+
+def send_verification_email(user_email, username, token):
+    # Configuració del servidor SMTP (exemple amb Gmail)
+    smtp_server = "smtp.gmail.com"
+    smtp_port = 587
+    smtp_username = "2daw.equip11@fp.insjoaquimmir.cat"  
+    smtp_password = "t4CxjcNws3iwanZ3"  
+
+    # Crear el missatge
+    msg = MIMEMultipart()
+    msg['From'] = smtp_username
+    msg['To'] = user_email
+    msg['Subject'] = "Verifica el teu correu electrònic"
+
+    # Cos del missatge
+    body = f"Hola {username},\n\nBenvingut/da! Si us plau, verifica el teu correu electrònic clicant en aquest enllaç:\n"
+    body += f"http://127.0.0.1:5000/verify/{username}/{token}"  
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Enviar el correu
+    server = smtplib.SMTP(smtp_server, smtp_port)
+    server.starttls()
+    server.login(smtp_username, smtp_password)
+    server.send_message(msg)
+    server.quit()
+
+@auth_bp.route('/verify/<name>/<email_token>')
+def verify_email(name, email_token):
+    # Busca l'usuari a la base de dades
+    user = User.query.filter_by(name=name, email_token=email_token).first()
+
+    if user and not user.verified:
+        user.verified = True
+        db.session.commit()
+        flash('Your email has been verified!', 'success')
+        return redirect(url_for('auth_bp.auth_login'))
+    else:
+        flash('Invalid or expired verification link', 'danger')
+        return redirect(url_for('main_bp.init'))
 
