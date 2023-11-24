@@ -1,6 +1,6 @@
-# 2daw-m12-p1-s1-examples
+# Projecte M12
 
-Exemples de suport per l'sprint 1 del projecte 1 dins del mòdul de projecte (M12) de 2n de DAW.
+## Creat i programat amb amor per Alex Martinez i Óscar Gómez
 
 ## Setup
 
