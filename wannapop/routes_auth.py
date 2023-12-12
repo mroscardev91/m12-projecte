@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, url_for, flash, request
 from .forms import RegisterForm, LoginForm, ResendVerificationForm
 from flask_login import login_user, current_user, logout_user, login_required
 from . import login_manager
-from .models import User
+from .models import User, BlockedUser
 from . import db_manager as db
 from werkzeug.security import generate_password_hash, check_password_hash
 from .security import notify_identity_changed
@@ -18,7 +18,8 @@ auth_bp = Blueprint(
 @auth_bp.route('/profile')
 @login_required
 def profile():
-    return render_template('auth/profile.html', user=current_user)
+    
+    return render_template('auth/profile.html', user=current_user, blocked=BlockedUser)
 
 @login_manager.user_loader
 def load_user(user_id):

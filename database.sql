@@ -54,3 +54,11 @@ CREATE TABLE confirmed_orders (
 	FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
+
+CREATE TABLE blocked_user (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    reason TEXT NOT NULL,
+    blocked_on DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES user(id)
+);

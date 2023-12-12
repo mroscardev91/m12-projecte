@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, DecimalField, SubmitField, SelectField, FileField
+from wtforms import PasswordField, StringField, DecimalField, SubmitField, SelectField, FileField, TextAreaField
 from wtforms.validators import DataRequired, NumberRange, InputRequired, Email
 import decimal
 
@@ -42,3 +42,8 @@ class DeleteForm(FlaskForm):
 class ResendVerificationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Reenviar Enllaç de Verificació')
+
+class BlockUserForm(FlaskForm):
+    user_id = StringField('Usuari', validators=[DataRequired()])
+    reason = TextAreaField('Raó', validators=[DataRequired()])
+    submit = SubmitField('Aplicar')
