@@ -2,7 +2,7 @@
 
 ## Creat i programat amb amor per Alex Martinez i Óscar Gómez
 
-##Projecte de  Python, amb el framework Flask i repositoris Git, ampliant el primer projecte de M12 amb funcionalitats d’autenticació, autorització i creant més continguts. :)
+## Projecte de  Python, amb el framework Flask i repositoris Git, ampliant el primer projecte de M12 amb funcionalitats d’autenticació, autorització i creant més continguts. :)
 ## Setup
 
 ### Python Virtual Environment
