@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app
 from .models import Product, Category
 from .forms import ProductForm, DeleteForm, RegisterForm, LoginForm
 from werkzeug.utils import secure_filename
@@ -17,6 +17,7 @@ main_bp = Blueprint(
 @main_bp.route('/')
 def init():
     #return redirect(url_for('main_bp.product_list'))
+    current_app.logger.info('Accés a la pàgina principal')
     return render_template('layout.html')
 
 
@@ -61,6 +62,7 @@ def product_create():
 
         # https://en.wikipedia.org/wiki/Post/Redirect/Get
         flash("Nou producte creat", "success")
+        current_app.logger.info("Nou producte creat", "success")
         return redirect(url_for('main_bp.product_list'))
     else: # GET
         return render_template('products/create.html', form = form)
@@ -103,6 +105,8 @@ def product_update(product_id):
 
         # https://en.wikipedia.org/wiki/Post/Redirect/Get
         flash("Producte actualitzat", "success")
+        current_app.logger.info("Producte actualitzat", "success")
+        
         return redirect(url_for('main_bp.product_read', product_id = product_id))
     else: # GET
         return render_template('products/update.html', product_id = product_id, form = form)
@@ -121,6 +125,7 @@ def product_delete(product_id):
         db.session.commit()
 
         flash("Producte esborrat", "success")
+        current_app.logger.info("Producte esborrat", "success")
         return redirect(url_for('main_bp.product_list'))
     else: # GET
         return render_template('products/delete.html', form = form, product = product)

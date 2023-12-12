@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, url_for, flash, request
+from flask import Blueprint, redirect, render_template, url_for, flash, request, current_app
 from .forms import RegisterForm, LoginForm, ResendVerificationForm, EditProfileForm
 from flask_login import login_user, current_user, logout_user, login_required
 from . import login_manager
@@ -40,6 +40,7 @@ def profile():
     elif request.method == 'GET':
         form.email.data = current_user.email 
 
+    current_app.logger.info('Perfil de d\'usuari')
     return render_template('auth/profile.html', form=form)
 
 @login_manager.user_loader
@@ -61,10 +62,13 @@ def auth_login():
                 return redirect(next_page or url_for('main_bp.product_list'))
             else:
                 flash('Please verify your email address', 'warning')
+                current_app.logger.info('Please verify your email address', 'warning')
                 return redirect(url_for('main_bp.init'))  
         else:
             flash('Login fallit. Si us plau, comprova el teu email i contrasenya', 'danger')
+            current_app.logger.info('Login fallit. Si us plau, comprova el teu email i contrasenya', 'danger')
     
+    current_app.logger.info('Intent d\'inici de sessió')
     return render_template('auth/login.html', form=form)
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
@@ -80,6 +84,7 @@ def auth_register():
 
         send_verification_email(new_user.email, new_user.name, token)
         flash('Registre completat amb èxit. Ara pots iniciar sessió.', 'success')
+        current_app.logger.info('Registre completat amb èxit. Ara pots iniciar sessió.', 'success')
         return redirect(url_for('auth_bp.auth_login'))  # Redirigeix a la pàgina de login
     #return redirect(url_for('main_bp.product_list'))
     return render_template('auth/register.html', form = form)
@@ -88,6 +93,7 @@ def auth_register():
 def auth_logout():
     logout_user()
     flash('Sessió tancada correctament', 'success')
+    current_app.logger.info('Usuari desconnectat')
     return redirect(url_for('auth_bp.auth_login')) 
 
 def send_verification_email(user_email, username, token):
@@ -124,9 +130,11 @@ def verify_email(name, email_token):
         user.verified = True
         db.session.commit()
         flash('Your email has been verified!', 'success')
+        current_app.logger.info('Your email has been verified!', 'success')
         return redirect(url_for('auth_bp.auth_login'))
     else:
         flash('Invalid or expired verification link', 'danger')
+        current_app.logger.info('Invalid or expired verification link', 'danger')
         return redirect(url_for('main_bp.init'))
 
 
@@ -161,8 +169,10 @@ def resend_verification():
                 server.sendmail(sender_email, receiver_email, message.as_string())
 
             flash('Un nou correu de verificació ha estat enviat.', 'success')
+            current_app.logger.info('Un nou correu de verificació ha estat enviat.', 'success')
         else:
             flash('No s\'ha trobat cap usuari amb aquest correu o ja està verificat.', 'error')
+            current_app.logger.info('No s\'ha trobat cap usuari amb aquest correu o ja està verificat.', 'error')
 
         return redirect(url_for('auth_bp.resend_verification'))
 
