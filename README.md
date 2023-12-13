@@ -3,11 +3,12 @@
 ## Creat i programat amb amor per Alex Martinez i Óscar Gómez
 
 ## Projecte de  Python, amb el framework Flask i repositoris Git, ampliant el primer projecte de M12 amb funcionalitats d’autenticació, autorització i creant més continguts. :)
-## Setup
 
 > [!IMPORTANT]
 > La lista de products para poder hacer ban es /products/list/admin (Ejemplo: http://127.0.0.1:5000/products/list/admin) //
 > Solo pueden entrar usuarios con el rol de moderator
+> 
+## Setup
 
 ### Python Virtual Environment
 
