@@ -2,6 +2,7 @@ from flask import Blueprint, redirect, render_template, url_for, flash, request,
 from .forms import RegisterForm, LoginForm, ResendVerificationForm, EditProfileForm
 from flask_login import login_user, current_user, logout_user, login_required
 from . import login_manager
+from .models import User, BlockedUser
 from . import db_manager as db
 from .models import User, BannedProducts, Product
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -18,30 +19,9 @@ auth_bp = Blueprint(
 @auth_bp.route('/profile', methods=['GET','POST'])
 @login_required
 def profile():
-    form = EditProfileForm()
-
-    if form.validate_on_submit():
-        if current_user.email != form.email.data:
-
-            current_user.email = form.email.data
-
-            new_token = secrets.token_urlsafe(20)
-            current_user.email_token = new_token
-            current_user.verified = False  
-  
-            db.session.commit()
-  
-            send_verification_email(form.email.data, current_user.name, new_token)
-
-            logout_user()
-   
-            return redirect(url_for('auth_bp.auth_login'))
-
-    elif request.method == 'GET':
-        form.email.data = current_user.email 
-
-    current_app.logger.info('Perfil de d\'usuari')
-    return render_template('auth/profile.html', form=form)
+    user = current_user
+    blocked = BlockedUser.query.filter_by(user_id=user.id).first()
+    return render_template('auth/profile.html', user=user, blocked=blocked)
 
 @login_manager.user_loader
 def load_user(user_id):

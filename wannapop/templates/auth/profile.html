@@ -6,18 +6,25 @@
 
 
 <div class="flex items-center justify-center h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Edit Profile</h1>
-        <form method="post" class="space-y-4">
-            {{ form.hidden_tag() }}
-            <div>
-                {{ form.email.label(class="block text-gray-700 text-sm font-bold mb-2") }}
-                {{ form.email(size=32, class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline") }}
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800 text-center">Perfil de l'Usuari</h2>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Nom:</label>
+            <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.name }}</p>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Correu electrònic:</label>
+            <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.email }}</p>
+        </div>
+        <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2">Rol:</label>
+            <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.role }}</p>
+        </div>
+        {% if blocked %}
+            <div class="alert alert-warning text-gray-700">
+                <strong>Estas bloquejat per:</strong> {{ blocked.reason }}
             </div>
-            <div class="flex justify-center">
-                {{ form.submit(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline") }}
-            </div>
-        </form>
+        {% endif %}
     </div>
 </div>
 

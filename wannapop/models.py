@@ -2,6 +2,7 @@ from . import db_manager as db
 from sqlalchemy.sql import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 class Product(db.Model):
     __tablename__ = "products"
@@ -32,11 +33,23 @@ class User(db.Model, UserMixin):
     email_token = db.Column(db.String(20), unique=True, nullable=True)
     verified = db.Column(db.Boolean, default=False)
     
+    
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+
+class BlockedUser(db.Model):
+    __tablename__ = 'blocked_user'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    reason = db.Column(db.Text, nullable=False)
+    blocked_on = db.Column(db.DateTime, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f'<BlockedUser {self.user_id}>'
 
 class BannedProducts(db.Model):
     __tablename__ = 'banned_products'

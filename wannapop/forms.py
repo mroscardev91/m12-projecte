@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import PasswordField, StringField, DecimalField, SubmitField, SelectField, FileField
+from wtforms import PasswordField, StringField, DecimalField, SubmitField, SelectField, FileField, TextAreaField
 from wtforms.validators import DataRequired, NumberRange, InputRequired, Email
 import decimal
 
@@ -46,3 +46,6 @@ class ResendVerificationForm(FlaskForm):
 class EditProfileForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Actualitzar')
+class BlockUserForm(FlaskForm):
+    reason = TextAreaField('Raó', validators=[DataRequired()])
+    submit = SubmitField('Aplicar')
