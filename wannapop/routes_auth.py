@@ -18,8 +18,9 @@ auth_bp = Blueprint(
 @auth_bp.route('/profile')
 @login_required
 def profile():
-    
-    return render_template('auth/profile.html', user=current_user, blocked=BlockedUser)
+    user = current_user
+    blocked = BlockedUser.query.filter_by(user_id=user.id).first()
+    return render_template('auth/profile.html', user=user, blocked=blocked)
 
 @login_manager.user_loader
 def load_user(user_id):

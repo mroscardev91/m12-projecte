@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash
-from .models import Product, Category
+from .models import Product, Category, BlockedUser
 from .forms import ProductForm, DeleteForm, RegisterForm, LoginForm
 from werkzeug.utils import secure_filename
 from . import db_manager as db
@@ -29,6 +29,11 @@ def product_list():
     
     return render_template('products/list.html', products_with_category = products_with_category)
 
+
+# funcion auxiliar
+def is_user_blocked(user_id):
+    return BlockedUser.query.filter_by(user_id=user_id).first() is not None
+
 @main_bp.route('/products/create', methods = ['POST', 'GET'])
 @login_required
 @require_create_permission.require(http_exception=403)
@@ -41,10 +46,13 @@ def product_create():
     form = ProductForm()
     form.category_id.choices = [(category.id, category.name) for category in categories]
 
+    if is_user_blocked(current_user.id):
+        flash('No pots crear productes perquè el teu compte està bloquejat.', 'danger')
+        return render_template('products/not_create.html')
+
     if form.validate_on_submit(): # si s'ha fet submit al formulari
         new_product = Product()
         new_product.seller_id = current_user.id # en un el futur tindrà l'id de l'usuari autenticat
-
         # dades del formulari a l'objecte product
         form.populate_obj(new_product)
 

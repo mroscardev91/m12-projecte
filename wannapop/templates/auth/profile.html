@@ -21,13 +21,10 @@
             <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.role }}</p>
         </div>
         {% if blocked %}
-            <div class="alert alert-warning mb-4">
-                <strong>Usuari Bloquejat:</strong> {{ blocked.reason }}
+            <div class="alert alert-warning text-gray-700">
+                <strong>Estas bloquejat per:</strong> {{ blocked.reason }}
             </div>
         {% endif %}
-        <div class="mb-4">
-            <p class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight">{{ user.role }}</p>
-        </div>
     </div>
 </div>
 
