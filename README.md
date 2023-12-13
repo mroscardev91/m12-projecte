@@ -7,7 +7,9 @@
 > [!IMPORTANT]
 > La lista de products para poder hacer ban es /products/list/admin (Ejemplo: http://127.0.0.1:5000/products/list/admin) //
 > Solo pueden entrar usuarios con el rol de moderator
-> 
+
+> [!TIP]
+> En /admin/user solo puede acceder el admin 
 ## Setup
 
 ### Python Virtual Environment
