@@ -2,8 +2,8 @@ from flask import Blueprint, redirect, render_template, url_for, flash, request,
 from .forms import RegisterForm, LoginForm, ResendVerificationForm, EditProfileForm
 from flask_login import login_user, current_user, logout_user, login_required
 from . import login_manager
-from .models import User
 from . import db_manager as db
+from .models import User, BannedProducts, Product
 from werkzeug.security import generate_password_hash, check_password_hash
 from .security import notify_identity_changed
 import secrets

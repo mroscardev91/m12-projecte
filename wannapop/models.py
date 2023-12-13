@@ -37,3 +37,16 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+class BannedProducts(db.Model):
+    __tablename__ = 'banned_products'
+
+    id = db.Column(db.Integer, primary_key=True)
+    reason = db.Column(db.Text)
+    created = db.Column(db.DateTime, nullable=False, server_default=db.func.now())
+    product_id = db.Column(db.Integer, db.ForeignKey('products.id'))
+
+    product = db.relationship('Product', backref='banned_product', lazy=True)
+
+    def __repr__(self):
+        return f"<BannedProducts {self.product_id}>"

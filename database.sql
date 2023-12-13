@@ -54,3 +54,9 @@ CREATE TABLE confirmed_orders (
 	FOREIGN KEY (order_id) REFERENCES orders(id)
 );
 
+CREATE TABLE banned_products (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    reason TEXT,
+    created DATETIME NOT NULL DEFAULT (DATETIME('now')),
+    product_id INTEGER REFERENCES products(id)
+);

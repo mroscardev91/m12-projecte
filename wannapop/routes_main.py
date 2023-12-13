@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, flash, current_app
-from .models import Product, Category
+from .models import Product, Category, BannedProducts
 from .forms import ProductForm, DeleteForm, RegisterForm, LoginForm
 from werkzeug.utils import secure_filename
 from . import db_manager as db
@@ -28,7 +28,10 @@ def product_list():
     # select amb join que retorna una llista dwe resultats
     products_with_category = db.session.query(Product, Category).join(Category).order_by(Product.id.asc()).all()
     
-    return render_template('products/list.html', products_with_category = products_with_category)
+    banned_products = [banned.product_id for banned in BannedProducts.query.all()]
+
+    
+    return render_template('products/list.html', products_with_category = products_with_category, banned_products=banned_products)
 
 @main_bp.route('/products/create', methods = ['POST', 'GET'])
 @login_required
