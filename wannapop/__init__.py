@@ -5,7 +5,8 @@ import os
 from config import Config 
 from flask_login import LoginManager
 from flask_principal import Principal
-
+from logging.handlers import RotatingFileHandler
+import logging
 
 db_manager = SQLAlchemy()
 login_manager = LoginManager()
@@ -23,6 +24,19 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + basedir + "/../database.db"
     # mostre als logs les ordres SQL que s'executen
     app.config["SQLALCHEMY_ECHO"] = True
+
+    log_handler = RotatingFileHandler('app.log', maxBytes=10240, backupCount=3)
+    log_handler.setFormatter(logging.Formatter(
+    '%(asctime)s %(levelname)s: %(message)s '
+    '[in %(pathname)s:%(lineno)d]'
+    ))
+    app.logger.addHandler(log_handler)
+
+    log_level = app.config.get('LOG_LEVEL')
+    if log_level not in ['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL']:
+        raise ValueError('Nivell de registre no vàlid')
+    app.logger.setLevel(getattr(logging, log_level))
+
 
     # Inicialitza els plugins
     login_manager.init_app(app)
