@@ -22,10 +22,14 @@ def admin_index():
 @require_admin_role.require(http_exception=403)
 def admin_users():
     users = db.session.query(User).all()
-    return render_template('admin/users_list.html', users=users)
+    blocked_users = BlockedUser.query.with_entities(BlockedUser.user_id).all()
+    blocked_user_ids = {bu.user_id for bu in blocked_users}
+    return render_template('admin/users_list.html', users=users, blocked_user_ids=blocked_user_ids)
 
 
 @admin_bp.route('/admin/users/<int:user_id>/block', methods=['GET', 'POST'])
+@login_required
+@require_admin_role.require(http_exception=403)
 def block_user(user_id):
     user = User.query.get_or_404(user_id)
     form = BlockUserForm()
@@ -40,25 +44,19 @@ def block_user(user_id):
             db.session.add(new_block)
             db.session.commit()
             flash(f'Usuario {user.name} bloqueado por: {form.reason.data}', 'success')
-            return redirect(url_for('admin_bp.users_list'))
+        return redirect(url_for('admin_bp.admin_users'))
 
     return render_template('admin/block_user.html', form=form, user=user)
 
 @admin_bp.route('/admin/users/<int:user_id>/unblock', methods=['POST'])
+@login_required
+@require_admin_role.require(http_exception=403)
 def unblock_user(user_id):
-    user = User.query.get_or_404(user_id)
-    form = BlockUserForm()  # Aquesta és la instància del teu formulari
-
-    if form.validate_on_submit():
-        # Aquí s'utilitza form, no BlockedUser
-        existing_block = BlockedUser.query.filter_by(user_id=user_id).first()
-
-        if existing_block:
-            db.session.delete(existing_block)
-            db.session.commit()
-
-            flash(f'Usuari {user.name} desbanejat', 'success')
-        else:
-            flash(f'L\'usuari {user.name} no està banejat.', 'warning')
-
-        return redirect(url_for('admin_bp.users_list'))
+    blocked_user = BlockedUser.query.filter_by(user_id=user_id).first()
+    if blocked_user:
+        db.session.delete(blocked_user)
+        db.session.commit()
+        flash(f'Usuari {blocked_user.user_id} desbloquejat.', 'success')
+    else:
+        flash('Usuari no trobat o ja desbloquejat.', 'warning')
+    return redirect(url_for('admin_bp.admin_users'))

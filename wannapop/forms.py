@@ -44,6 +44,5 @@ class ResendVerificationForm(FlaskForm):
     submit = SubmitField('Reenviar Enllaç de Verificació')
 
 class BlockUserForm(FlaskForm):
-    user_id = StringField('Usuari', validators=[DataRequired()])
     reason = TextAreaField('Raó', validators=[DataRequired()])
     submit = SubmitField('Aplicar')

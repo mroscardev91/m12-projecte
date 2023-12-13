@@ -33,6 +33,7 @@ class User(db.Model, UserMixin):
     email_token = db.Column(db.String(20), unique=True, nullable=True)
     verified = db.Column(db.Boolean, default=False)
     
+    
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
