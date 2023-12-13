@@ -25,14 +25,17 @@ def init():
 @login_required
 @require_view_permission.require(http_exception=403)
 def product_list():
-    # select amb join que retorna una llista dwe resultats
+    # Obtener la lista de productos con sus categorías
     products_with_category = db.session.query(Product, Category).join(Category).order_by(Product.id.asc()).all()
-    
+
+    # Obtener la lista de productos prohibidos
     banned_products = [banned.product_id for banned in BannedProducts.query.all()]
 
-    
-    return render_template('products/list.html', products_with_category = products_with_category, banned_products=banned_products)
+    # Filtrar la lista de productos para excluir los productos baneados
+    filtered_products = [(product, category) for (product, category) in products_with_category if product.id not in banned_products]
 
+    return render_template('products/list.html', products_with_category=filtered_products)
+    
 @main_bp.route('/products/create', methods = ['POST', 'GET'])
 @login_required
 @require_create_permission.require(http_exception=403)

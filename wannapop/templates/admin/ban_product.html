@@ -2,32 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ban Product</title>
-    {{ bootstrap.load_css() }}
 </head>
 <body>
+    <h1>Ban Product: {{ product_name }}</h1>
 
-<div class="container mt-4">
-    <h2>Ban Product</h2>
-    <p>Product: {{ product.name }}</p>
-
-    <form method="POST" action="{{ url_for('ban_product', product_id=product.id) }}">
-        {{ form.hidden_tag() }}
-        <div class="form-group">
-            {{ form.label('reason') }}
-            {{ form.reason(class="form-control", rows=4) }}
-            {% if form.reason.errors %}
-                <small class="form-text text-danger">{{ form.reason.errors[0] }}</small>
-            {% endif %}
-        </div>
-        <button type="submit" class="btn btn-danger">Ban Product</button>
-    </form>
-
-    <a href="{{ url_for('admin_users') }}">Back to Users</a>
-</div>
-
-{{ bootstrap.load_js() }}
+    {% if reason %}
+        <p>El producto '{{ product_name }}' ha sido prohibido por la siguiente razón:</p>
+        <p>{{ reason }}</p>
+        <a href="{{ url_for('admin_bp.product_list') }}"><button>Vuelta a la lista de productos</button></a>
+    {% else %}
+        <form method="POST" action="{{ url_for('admin_bp.enter_ban_reason', product_id=product_id) }}">
+            <label for="reason">Razón de prohibición:</label>
+            <br>
+            <textarea id="reason" name="reason" rows="4" cols="50"></textarea>
+            <br>
+            <button type="submit">Prohibir Producto</button>
+        </form>
+    {% endif %}
 </body>
 </html>

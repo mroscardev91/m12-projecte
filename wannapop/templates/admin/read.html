@@ -1,0 +1,25 @@
+{% extends '_template.html' %}
+
+{% block content %}
+
+<h3>Producto {{ product.id }}</h3>
+
+{% if ban_reason %}
+    <p><strong>Este producto está prohibido:</strong></p>
+    <p>Razón: {{ ban_reason }}</p>
+{% else %}
+    <a href="/products/update/{{ product.id }}">Modificar producto</a>
+    <br />
+    <a href="/products/delete/{{ product.id }}">Eliminar producto</a>
+    <ul>
+        <li>Nombre: {{ product.title }}</li>
+        <li>Descripción: {{ product.description }}</li>
+        <li>Precio: {{ product.price }}</li>
+        <li>Categoría: {{ category.name }} </li>
+    </ul>
+    <p><img src="/static/products/{{ product.photo }}" alt="{{ product.title }}" /></p>
+{% endif %}
+
+<a href="/products/list/admin">&#x3c;&#x3c; Volver al listado de productos</a>
+
+{% endblock %}
