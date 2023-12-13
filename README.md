@@ -9,7 +9,7 @@
 > Solo pueden entrar usuarios con el rol de moderator
 
 > [!TIP]
-> En /admin/user solo puede acceder el admin 
+> En /admin/user solo puede acceder el admin para bloquear y debloquear users
 ## Setup
 
 ### Python Virtual Environment
