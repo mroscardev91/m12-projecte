@@ -86,6 +86,8 @@ def product_create():
 def product_read(product_id):
     # select amb join i 1 resultat
     (product, category) = Product.get_with(product_id, Category)
+    current_app.logger.debug(item.to_json())
+    current_app.logger.debug(store.to_json())
     
     return render_template('products/read.html', product = product, category = category)
 

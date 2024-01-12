@@ -51,3 +51,21 @@ class BaseMixin():
     @classmethod
     def get_all_with(cls, join_cls):
         return db.session.query(cls, join_cls).join(join_cls).order_by(cls.id.asc()).all()
+
+from collections import OrderedDict
+from flask import json
+
+class SerializableMixin():
+
+    exclude_attr = []
+
+    def to_dict(self):
+        result = OrderedDict()
+        for key in self.__mapper__.c.keys():
+            if key not in self.__class__.exclude_attr:
+                result[key] = getattr(self, key)
+        return result
+
+    def to_json(self):
+        result = self.to_dict()
+        return json.dumps(result)
