@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<form method="post" action="{{ url_for('admin_bp.block_user', user_id=user.id) }}">
+    {{ form.hidden_tag() }}
+    <div>
+        <label for="user_id" class="block text-gray-700 text-sm font-bold mb-2">Usuari:</label>
+        <span class="text-gray-800">{{ user.name }}</span>
+    </div>
+    <div class="mb-4">
+        {{ form.reason.label(class="block text-gray-700 text-sm font-bold mb-2") }}
+        {{ form.reason(class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline") }}
+    </div>
+    <div>
+        {{ form.submit(class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline") }}
+    </div>
+</form>
+
+
+{% endblock %}

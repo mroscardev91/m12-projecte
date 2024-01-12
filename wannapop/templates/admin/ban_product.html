@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ban Product</title>
+</head>
+<body>
+    <h1>Ban Product: {{ product_name }}</h1>
+
+    {% if reason %}
+        <p>El producto '{{ product_name }}' ha sido prohibido por la siguiente razón:</p>
+        <p>{{ reason }}</p>
+        <a href="{{ url_for('admin_bp.product_list') }}"><button>Vuelta a la lista de productos</button></a>
+    {% else %}
+        <form method="POST" action="{{ url_for('admin_bp.enter_ban_reason', product_id=product_id) }}">
+            <label for="reason">Razón de prohibición:</label>
+            <br>
+            <textarea id="reason" name="reason" rows="4" cols="50"></textarea>
+            <br>
+            <button type="submit">Prohibir Producto</button>
+        </form>
+    {% endif %}
+</body>
+</html>

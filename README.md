@@ -2,6 +2,17 @@
 
 ## Creat i programat amb amor per Alex Martinez i Óscar Gómez
 
+<<<<<<< HEAD
+=======
+## Projecte de  Python, amb el framework Flask i repositoris Git, ampliant el primer projecte de M12 amb funcionalitats d’autenticació, autorització i creant més continguts. :)
+
+> [!IMPORTANT]
+> La lista de products para poder hacer ban es /products/list/admin (Ejemplo: http://127.0.0.1:5000/products/list/admin) //
+> Solo pueden entrar usuarios con el rol de moderator
+
+> [!TIP]
+> En /admin/user solo puede acceder el admin para bloquear y debloquear users
+>>>>>>> b0.2
 ## Setup
 
 ### Python Virtual Environment
@@ -10,7 +21,7 @@ Crea l'entorn:
 
     python3 -m venv .venv
 
-L'activa:
+Activa'l:
 
     source .venv/bin/activate
 
@@ -28,33 +39,28 @@ Per desactivar l'entorn:
 
 ### Base de dades
 
-Crea una base de dades SQLite a partir de l'script [0_tables.sql](./sqlite/0_tables.sql). Tens una d'exemple creada amb les dades del fitxer [1_mock_data.sql](./sqlite/1_mock_data.sql). Hi ha dos usuaris de prova i tots dos tenen com a contrasenya `patata`:
+La base de dades [SQLite](https://www.sqlite.org) s'ha de dir `database.db`. S'ha creat amb l'script [database.sql](./database.sql).
 
-* `voltaire@alumnat.cat` que té el rol de `viewer`, sols lectura.
-* `edison@alumnat.cat` que té el rol `editor`, per llegir i modificar dades.
-
-### Fitxer de configuració
-
-Crea un fitxer `.env` amb els paràmetres de configuració. Pots fer servir el fitxer [.env.exemple](./.env.exemple).
-
-## Run
+## Run des de terminal
 
 Executa:
 
-    flask run --debug
+    flask --debug run
 
-I obre un navegador a l'adreça: [http://127.0.0.1:5000](http://127.0.0.1:5000)
+I obre un navegador a l'adreça: [http://127.0.0.1:5000](http://127.0.0.1:5000).
+
+Aquesta comanda executa el codi de `wsgi.py` 
 
 ## Debug amb Visual Code
 
-Des de l'opció de `Run and Debug`, crea un fitxer animenat `launch.json` amb el contingut següent:
+Des de l'opció de `Run and Debug`, crea un fitxer anomenat `launch.json` amb el contingut següent:
 
 ```json
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "MY APP",
+            "name": "WANNAPOP",
             "type": "python",
             "request": "launch",
             "module": "flask",

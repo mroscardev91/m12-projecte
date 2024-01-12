@@ -1,0 +1,42 @@
+{% extends '_template.html' %}
+{% block content %}
+
+<h3>Productes</h3>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>NOM</th>
+		<th>PREU</th>
+		<th>CATEGORIA</th>
+		<th>MODERACION</th>
+	</tr>
+
+	{% for (product, category) in products_with_category %}
+	<tr>
+		<td><a href="/products/read/{{ product.id }}/admin">{{ product.id }}</a></td>
+		<td><a href="/products/read/{{ product.id }}/admin">{{ product.title }}</a></td>
+		<td><a href="/products/read/{{ product.id }}/admin">{{ product.price }}</a></td>
+		<td><a href="/products/read/{{ product.id }}/admin">{{ category.name }}</a></td>
+		<td>
+			{% if product.id in banned_products %}
+                <form method="POST" action="{{ url_for('admin_bp.unban_product', product_id=product.id) }}">
+                    <button type="submit">Desprohibir Producto</button>
+                </form>
+            {% else %}
+                <form method="POST" action="{{ url_for('admin_bp.ban_product', product_id=product.id) }}">
+                    <button type="submit">Prohibir Producto</button>
+                </form>
+            {% endif %}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% if 'create' in permissions %}
+    <!-- Botó de Modificar -->
+    <a href="/products/create">Crear un nou producte</a>
+{% endif %}
+
+
+
+{% endblock %}
