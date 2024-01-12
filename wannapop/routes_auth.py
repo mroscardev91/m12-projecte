@@ -33,7 +33,7 @@ def auth_login():
         return redirect(url_for('main_bp.product_list'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(name=form.username.data).first()
+        user = User.get_filtered_by(name=form.username.data)
         if user and check_password_hash(user.password, form.password.data):
             if user.verified:
                 login_user(user)

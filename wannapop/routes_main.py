@@ -26,7 +26,7 @@ def init():
 @require_view_permission.require(http_exception=403)
 def product_list():
     # Obtener la lista de productos con sus categorías
-    products_with_category = db.session.query(Product, Category).join(Category).order_by(Product.id.asc()).all()
+    products_with_category = Product.get_all_with(Category)
 
     # Obtener la lista de productos prohibidos
     banned_products = [banned.product_id for banned in BannedProducts.query.all()]
@@ -71,8 +71,7 @@ def product_create():
             new_product.photo = "no_image.png"
 
         # insert!
-        db.session.add(new_product)
-        db.session.commit()
+        new_item.save()
 
         # https://en.wikipedia.org/wiki/Post/Redirect/Get
         flash("Nou producte creat", "success")
@@ -86,7 +85,7 @@ def product_create():
 @require_view_permission.require(http_exception=403)
 def product_read(product_id):
     # select amb join i 1 resultat
-    (product, category) = db.session.query(Product, Category).join(Category).filter(Product.id == product_id).one()
+    (product, category) = Product.get_with(product_id, Category)
     
     return render_template('products/read.html', product = product, category = category)
 
@@ -94,8 +93,8 @@ def product_read(product_id):
 @login_required
 @require_edit_permission.require(http_exception=403)
 def product_update(product_id):
-    # select amb 1 resultat
-    product = db.session.query(Product).filter(Product.id == product_id).one()
+    # select amb 1 resultatz
+    product = Product.get(product_id)
 
     # select que retorna una llista de resultats
     categories = db.session.query(Category).order_by(Category.id.asc()).all()
@@ -114,8 +113,7 @@ def product_update(product_id):
             product.photo = filename
 
         # update!
-        db.session.add(product)
-        db.session.commit()
+        product.update()
 
         # https://en.wikipedia.org/wiki/Post/Redirect/Get
         flash("Producte actualitzat", "success")
@@ -130,13 +128,12 @@ def product_update(product_id):
 @require_delete_permission.require(http_exception=403)
 def product_delete(product_id):
     # select amb 1 resultat
-    product = db.session.query(Product).filter(Product.id == product_id).one()
+    product = product.get(product_id)
 
     form = DeleteForm()
     if form.validate_on_submit(): # si s'ha fet submit al formulari
         # delete!
-        db.session.delete(product)
-        db.session.commit()
+        product.delete()
 
         flash("Producte esborrat", "success")
         current_app.logger.info("Producte esborrat", "success")

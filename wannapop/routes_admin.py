@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for, request, current_app, redirect, url_for, request
 from flask_login import current_user, login_required
 from .models import User, BlockedUser, Product, BannedProducts, Category
-from . import db_manager as db
 from .security import require_admin_role, require_admin_or_moderator_role, require_moderator_role
 from .forms import BlockUserForm
 
@@ -31,7 +30,7 @@ def admin_index():
 @require_admin_role.require(http_exception=403)
 def admin_users():
     current_app.logger.info('Accés a la pàgina d\'administració d\'usuaris')
-    users = db.session.query(User).all()
+    users = User.get_all()
     blocked_users = BlockedUser.query.with_entities(BlockedUser.user_id).all()
     blocked_user_ids = {bu.user_id for bu in blocked_users}
     return render_template('admin/users_list.html', users=users, blocked_user_ids=blocked_user_ids)
