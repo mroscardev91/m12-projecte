@@ -3,7 +3,6 @@ from .forms import RegisterForm, LoginForm, ResendVerificationForm, EditProfileF
 from flask_login import login_user, current_user, logout_user, login_required
 from . import login_manager
 from .models import User, BlockedUser
-from . import db_manager as db
 from .models import User, BannedProducts, Product
 from werkzeug.security import generate_password_hash, check_password_hash
 from .security import notify_identity_changed
@@ -11,6 +10,8 @@ import secrets
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from . import db_manager as db
+
 
 auth_bp = Blueprint(
     "auth_bp", __name__, template_folder="templates", static_folder="static"
@@ -59,8 +60,7 @@ def auth_register():
         hashed_password = generate_password_hash(form.password.data)
         new_user = User(name=form.username.data, email=form.email.data, password=hashed_password, role='wanner', email_token=token, verified = 0)
         
-        db.session.add(new_user)
-        db.session.commit()
+        User.save(new_user)
 
         send_verification_email(new_user.email, new_user.name, token)
         flash('Registre completat amb èxit. Ara pots iniciar sessió.', 'success')

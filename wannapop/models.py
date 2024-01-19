@@ -17,7 +17,7 @@ class Product(db.Model, BaseMixin, SerializableMixin):
     created = db.Column(db.DateTime, server_default=func.now())
     updated = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
 
-class Category(db.Model, BaseMixin, SerializableMixin, SerializableMixin):
+class Category(db.Model, BaseMixin, SerializableMixin):
     __tablename__ = "categories"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
@@ -42,7 +42,7 @@ class User(db.Model, BaseMixin, UserMixin, SerializableMixin):
         return check_password_hash(self.password_hash, password)
 
 
-class BlockedUser(db.Model):
+class BlockedUser(db.Model, BaseMixin, SerializableMixin):
     __tablename__ = 'blocked_user'
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
