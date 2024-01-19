@@ -50,8 +50,8 @@ def block_user(user_id):
             flash(f'El usuario {user.name} ya está bloqueado.', 'warning')
         else:
             new_block = BlockedUser(user_id=user_id, reason=form.reason.data)
-            db.session.add(new_block)
-            db.session.commit()
+
+            BlockedUser.save(new_block)
             flash(f'Usuario {user.name} bloqueado por: {form.reason.data}', 'success')
         return redirect(url_for('admin_bp.admin_users'))
 
@@ -63,8 +63,7 @@ def block_user(user_id):
 def unblock_user(user_id):
     blocked_user = BlockedUser.query.filter_by(user_id=user_id).first()
     if blocked_user:
-        db.session.delete(blocked_user)
-        db.session.commit()
+        BlockedUser.delete(blocked_user)
         flash(f'Usuari {blocked_user.user_id} desbloquejat.', 'success')
     else:
         flash('Usuari no trobat o ja desbloquejat.', 'warning')
