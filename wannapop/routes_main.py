@@ -71,7 +71,7 @@ def product_create():
             new_product.photo = "no_image.png"
 
         # insert!
-        new_item.save()
+        new_product.save()
 
         # https://en.wikipedia.org/wiki/Post/Redirect/Get
         flash("Nou producte creat", "success")
@@ -86,8 +86,8 @@ def product_create():
 def product_read(product_id):
     # select amb join i 1 resultat
     (product, category) = Product.get_with(product_id, Category)
-    current_app.logger.debug(item.to_json())
-    current_app.logger.debug(store.to_json())
+    current_app.logger.debug(product.to_json())
+    current_app.logger.debug(product.to_json())
     
     return render_template('products/read.html', product = product, category = category)
 
