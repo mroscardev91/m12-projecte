@@ -52,7 +52,7 @@ class BlockedUser(db.Model):
     def __repr__(self):
         return f'<BlockedUser {self.user_id}>'
 
-class BannedProducts(db.Model):
+class BannedProducts(db.Model, BaseMixin):
     __tablename__ = 'banned_products'
 
     id = db.Column(db.Integer, primary_key=True)

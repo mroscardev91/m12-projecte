@@ -75,7 +75,7 @@ def unblock_user(user_id):
 @require_moderator_role.require(http_exception=403)
 def product_list():
     # select amb join que retorna una llista dwe resultats
-    products_with_category = db.session.query(Product, Category).join(Category).order_by(Product.id.asc()).all()
+    products_with_category = Product.get_all_with(Category)
     
     banned_products = [banned.product_id for banned in BannedProducts.query.all()]
 
@@ -87,8 +87,7 @@ def product_list():
 @require_moderator_role.require(http_exception=403)
 def product_read(product_id):
     # select amb join i 1 resultat
-    (product, category) = db.session.query(Product, Category).join(Category).filter(Product.id == product_id).one()
-
+    (product, category) = Product.get_with(product_id, Category)
     # Verifica si el producto está prohibido y obtén la razón del ban
     ban_reason = get_ban_reason(product_id)
 
@@ -98,7 +97,7 @@ def product_read(product_id):
 @login_required
 @require_moderator_role.require(http_exception=403)
 def ban_product(product_id):
-    product = Product.query.get(product_id)
+    product = Product.get(product_id)
 
     if product:
         # Verifica si el producto ya está en la lista de productos prohibidos
@@ -121,8 +120,7 @@ def enter_ban_reason(product_id):
         # Recuperar la razón del formulario y agregar el registro a la tabla de productos prohibidos
         reason = request.form.get('reason')
         banned_products = BannedProducts(product_id=product_id, reason=reason)
-        db.session.add(banned_products)
-        db.session.commit()
+        banned_products.save()
         current_app.logger.info(f'Producto {product_id} prohibido por el administrador')
         return render_template('admin/ban_product.html', product_id=product_id, reason=reason)
     
@@ -141,8 +139,7 @@ def unban_product(product_id):
         banned_product = BannedProducts.query.filter_by(product_id=product_id).first()
 
         if banned_product:
-            db.session.delete(banned_product)
-            db.session.commit()
+            banned_product.delete()
             current_app.logger.info(f'Producto {product_id} desprohibido por el administrador')
             return redirect(url_for('admin_bp.product_list'))
         else:
