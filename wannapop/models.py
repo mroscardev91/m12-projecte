@@ -3,9 +3,9 @@ from sqlalchemy.sql import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
-from .mixins import BaseMixin
+from .mixins import BaseMixin, SerializableMixin
 
-class Product(db.Model, BaseMixin):
+class Product(db.Model, BaseMixin, SerializableMixin):
     __tablename__ = "products"
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String, nullable=False)
@@ -17,13 +17,13 @@ class Product(db.Model, BaseMixin):
     created = db.Column(db.DateTime, server_default=func.now())
     updated = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now())
 
-class Category(db.Model, BaseMixin):
+class Category(db.Model, BaseMixin, SerializableMixin, SerializableMixin):
     __tablename__ = "categories"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     slug = db.Column(db.String, nullable=False)
 
-class User(db.Model, BaseMixin, UserMixin):
+class User(db.Model, BaseMixin, UserMixin, SerializableMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
