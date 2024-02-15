@@ -3,20 +3,24 @@ from .errors import not_found, bad_request
 from .. import db_manager as db
 from ..models import Product, Category, Order
 from ..helper_json import json_request, json_response
-from flask import current_app, jsonify
+from flask import current_app, jsonify, request
 
 #List
 @api_bp.route('/products', methods=['GET'])
-def get_product_filtered():
-    product_with_categories = Product.get_all_with(Category)
-    data = Product.to_dict_collection(product_with_categories)
-
+def get_product_filtred():
+    title = request.args.get('title')
+    if title:
+        Product.db_enable_debug()
+        products_with_title = Product.query.filter_by(title=title).all()
+    else:
+        products_with_title = []
+    data = Product.to_dict_collection(products_with_title)
     return jsonify(
         {
             'data': data, 
             'success': True
-        }), 200  
-
+        }), 200
+    
 
 @api_bp.route('/products/<int:product_id>/orders', methods=['GET'])
 def listar_ofertas_por_producto(product_id):
