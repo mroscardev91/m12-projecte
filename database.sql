@@ -73,8 +73,8 @@ CREATE TABLE orders (
     id INT PRIMARY KEY,
     product_id INT NOT NULL,
     buyer_id INT NOT NULL,
-    offer NUMERIC(10, 2),
-    created DATETIME DEFAULT CURRENT_TIMESTAMP,
+    offer REAL NOT NULL,
+    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE (product_id, buyer_id),
     FOREIGN KEY (product_id) REFERENCES products(id),
     FOREIGN KEY (buyer_id) REFERENCES users(id)
@@ -84,4 +84,9 @@ CREATE TABLE confirmed_orders (
     order_id INT PRIMARY KEY,
     created DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (order_id) REFERENCES orders(id)
+);
+
+CREATE TABLE status (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    estado VARCHAR(50)
 );

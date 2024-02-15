@@ -3,7 +3,7 @@ from .errors import not_found, bad_request
 from .. import db_manager as db
 from ..models import Order, ConfirmedOrder
 from ..helper_json import json_request, json_response
-from flask import current_app
+from flask import current_app, jsonify
 
 @api_bp.route('/orders/<int:order_id>/confirmed', methods=['POST'])
 def accept_order(order_id):
@@ -21,9 +21,18 @@ def accept_order(order_id):
             return bad_request('Error confirming the order')
 
         current_app.logger.debug(f"Order {order_id} confirmed successfully")
-        return json_response({'message': f'Order {order_id} confirmed successfully'})
+        return jsonify(
+            {   
+                'data': order_id, 
+                'success': True
+            }), 200 
     else:
-        return not_found('Order not found')
+        return jsonify(
+            {
+                'error': 'Not Found', 
+                'message': 'Order not found', 
+                'success': False
+            }), 404
 
 @api_bp.route('/orders/<int:order_id>/confirmed', methods=['DELETE'])
 def cancel_confirmed_order(order_id):
@@ -37,6 +46,15 @@ def cancel_confirmed_order(order_id):
             return bad_request('Error canceling the confirmed order')
 
         current_app.logger.debug(f"ConfirmedOrder {order_id} canceled successfully")
-        return json_response({'message': f'ConfirmedOrder {order_id} canceled successfully'})
+        return jsonify(
+            {
+                'data': order_id, 
+                'success': True
+            }), 200  
     else:
-        return not_found('ConfirmedOrder not found')
+        return jsonify(
+            {
+                'error': 'Not Found', 
+                'message': 'ConfirmedOrder not found', 
+                'success': False
+            }), 404
