@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 from .mixins import BaseMixin, SerializableMixin
+from sqlalchemy.orm import relationship
 
 class Product(db.Model, BaseMixin, SerializableMixin):
     __tablename__ = "products"
@@ -64,3 +65,27 @@ class BannedProducts(db.Model, BaseMixin):
 
     def __repr__(self):
         return f"<BannedProducts {self.product_id}>"
+
+
+class Order(db.Model, BaseMixin, SerializableMixin):
+    __tablename__ = "orders"
+    id = db.Column(db.Integer, primary_key=True)
+    product_id = db.Column(db.Integer, db.ForeignKey("products.id"), nullable=False)
+    buyer_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    offer = db.Column(db.Numeric(precision=10, scale=2))
+    created = db.Column(db.DateTime, server_default=func.now())
+
+    # Unique constraint for product_id and buyer_id
+    __table_args__ = (db.UniqueConstraint('product_id', 'buyer_id', name='uc_product_buyer'),)
+
+    # Relationships
+    product = relationship("Product", backref="orders")
+    buyer = relationship("User", backref="orders")
+
+class ConfirmedOrder(db.Model, BaseMixin, SerializableMixin):
+    __tablename__ = "confirmed_orders"
+    order_id = db.Column(db.Integer, db.ForeignKey("orders.id"), primary_key=True)
+    created = db.Column(db.DateTime, server_default=func.now())
+
+    # Relationship
+    order = relationship("Order", backref="confirmed_order", uselist=False)
