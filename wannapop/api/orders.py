@@ -11,7 +11,6 @@ from flask import current_app, jsonify
 def accept_order(order_id):
     order = Order.query.get(order_id)
 
-    
     if order:
 
         product = Product.get(order.product_id)
