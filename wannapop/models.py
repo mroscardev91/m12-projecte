@@ -45,6 +45,9 @@ class User(db.Model, BaseMixin, UserMixin, SerializableMixin):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
     
+    def get_id(self):
+        return self.name
+
     def get_token(self, expires_in=3600):
         now = datetime.now(timezone.utc)
         if self.token and self.token_expiration.replace(

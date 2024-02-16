@@ -1,85 +1,68 @@
-2024-01-19 17:08:47,378 ERROR: Exception on /products/read/6 [GET] [in C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1414]
-Traceback (most recent call last):
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_debugtoolbar\__init__.py", line 157, in dispatch_request
-    return view_func(**req.view_args)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_principal.py", line 199, in _decorated
-    rv = f(*args, **kw)
-  File "C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py", line 89, in product_read
-    current_app.logger.debug(product.to_json())
-NameError: name 'item' is not defined
-2024-01-19 17:08:47,378 ERROR: Exception on /products/read/6 [GET] [in C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1414]
-Traceback (most recent call last):
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_debugtoolbar\__init__.py", line 157, in dispatch_request
-    return view_func(**req.view_args)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_principal.py", line 199, in _decorated
-    rv = f(*args, **kw)
-  File "C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py", line 89, in product_read
-    current_app.logger.debug(product.to_json())
-NameError: name 'item' is not defined
-2024-01-19 17:08:51,478 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:08:51,478 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:09:47,240 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:47,252 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:47,252 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,017 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,026 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,026 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,063 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:09:48,063 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:11:58,370 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:11:58,380 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:11:58,380 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:12:07,830 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:12:07,830 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:20:53,942 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:53,967 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:53,967 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:55,601 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:55,629 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:55,629 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:21:01,323 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:21:01,323 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:21:37,889 INFO: Intent d'inici de sessió [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:52]
-2024-01-26 15:21:37,889 INFO: Intent d'inici de sessió [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:52]
-2024-01-26 15:21:48,521 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:21:48,521 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:22:52,518 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:22:52,518 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:22:58,006 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:22:58,006 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:23:03,034 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:23:03,034 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-02-15 20:22:55,644 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-15 20:22:55,656 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-15 20:22:55,656 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-15 20:22:56,523 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-15 20:22:56,535 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-15 20:22:56,535 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-15 20:23:04,868 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-02-15 20:23:04,868 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-02-16 15:22:54,454 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-16 15:22:54,466 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-16 15:22:54,466 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-16 15:22:55,160 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-16 15:22:55,171 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-16 15:22:55,171 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:57]
-2024-02-16 15:23:00,293 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-02-16 15:23:00,293 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-02-16 15:29:40,683 DEBUG: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'. [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\products.py:66]
-2024-02-16 15:29:40,683 DEBUG: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'. [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\products.py:66]
+2024-02-16 17:36:00,357 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:00,369 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:00,369 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:01,013 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:01,025 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:01,025 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:05,169 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
+2024-02-16 17:36:05,169 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
+2024-02-16 17:36:13,442 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
+2024-02-16 17:36:13,442 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
+2024-02-16 18:41:29,658 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 18:41:29,674 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 18:41:29,674 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 18:41:30,572 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 18:41:30,584 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 18:41:30,584 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 18:49:10,710 DEBUG: credentials:  [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:49:10,710 DEBUG: credentials:  [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:49:10,710 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:49:10,710 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:08,745 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:08,745 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:08,746 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:08,746 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:34,355 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:34,355 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:34,355 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:34,355 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:35,638 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:35,638 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:35,639 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:35,639 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:38,691 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:38,691 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:38,692 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:38,692 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:42,487 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:42,487 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:52:42,489 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:42,489 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:52:47,536 INFO: Usuari desconnectat [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:76]
+2024-02-16 18:52:47,536 INFO: Usuari desconnectat [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:76]
+2024-02-16 18:52:47,547 INFO: Intent d'inici de sessió [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:52]
+2024-02-16 18:52:47,547 INFO: Intent d'inici de sessió [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:52]
+2024-02-16 18:53:10,964 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:53:10,964 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:53:10,964 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:53:10,964 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:53:11,988 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:53:11,988 DEBUG: credentials: mroscardev@gmail.com [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:53:11,988 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:53:11,988 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:53:32,003 DEBUG: credentials: Austin [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:53:32,003 DEBUG: credentials: Austin [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:53:32,004 DEBUG: auth user: OrderedDict([('id', 1), ('name', 'Austin'), ('email', 'mroscardev@gmail.com'), ('password', 'pbkdf2:sha256:600000$B07HTrrJDXn0t9wE$d7927e4234bfc08b5531adfdab6e7d61de7b4fa749876f87cf4d1381f3a9eef0'), ('role', 'admin'), ('email_token', 'AEKwMffT9gRMjM-PxeiLX52_CgE'), ('verified', True), ('token', None), ('token_expiration', None)]) [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:53:32,004 DEBUG: auth user: OrderedDict([('id', 1), ('name', 'Austin'), ('email', 'mroscardev@gmail.com'), ('password', 'pbkdf2:sha256:600000$B07HTrrJDXn0t9wE$d7927e4234bfc08b5531adfdab6e7d61de7b4fa749876f87cf4d1381f3a9eef0'), ('role', 'admin'), ('email_token', 'AEKwMffT9gRMjM-PxeiLX52_CgE'), ('verified', True), ('token', None), ('token_expiration', None)]) [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:53:32,198 DEBUG: Token:56718914fb8d66b9cf60b007e0e812f6 [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\tokens.py:10]
+2024-02-16 18:53:32,198 DEBUG: Token:56718914fb8d66b9cf60b007e0e812f6 [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\tokens.py:10]
+2024-02-16 18:55:53,463 DEBUG: credentials:  [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:55:53,463 DEBUG: credentials:  [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:55:53,464 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:55:53,464 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:56:05,604 DEBUG: credentials:  [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:56:05,604 DEBUG: credentials:  [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:56:05,604 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:56:05,604 DEBUG: auth user: None [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:14]
+2024-02-16 18:56:09,763 DEBUG: credentials: Austin [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]
+2024-02-16 18:56:09,763 DEBUG: credentials: Austin [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\api\helper_auth.py:13]

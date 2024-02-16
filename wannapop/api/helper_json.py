@@ -15,7 +15,7 @@ def json_request(required_fields=[], all_required=True):
     if required_count == 0:
         error_message = "Required field(s) missing"
         raise Exception(error_message)
-
+    
     return data
 
 def json_response(data, status_code=200):

@@ -8,13 +8,11 @@ from flask import current_app, jsonify
 
 @api_bp.route('/orders/<int:order_id>/confirmed', methods=['POST'])
 @token_auth.login_required
-def accept_order(order_id):
-    order = Order.query.get(order_id)
-
+def accept_order(id):
+    order = Order.get(id)
     if order:
-
         product = Product.get(order.product_id)
-        
+
         confirmed_order = ConfirmedOrder.get(id)
         if basic_auth.current_user().id == product.seller_id  :
             if confirmed_order :
@@ -24,24 +22,28 @@ def accept_order(order_id):
             else:
                 return bad_request("Order already confirmed")
         else:
-            return forbidden_access("You are not the owner of this product")
-        
+                return forbidden_access("You are not the owner of this product")
     else:
         return not_found("Item not found")
 
 
 
-@api_bp.route('/orders/<int:order_id>/confirmed', methods=['DELETE'])
+@api_bp.route('/orders/<int:id>/confirmed', methods=['DELETE'])
 @token_auth.login_required
-def cancel_confirmed_order(order_id):
+def delete_confirmed_order(id):
+
     order = Order.get(id)
     confirmed_order = ConfirmedOrder.get(id)
     if confirmed_order:
+
         product = Product.get(order.product_id)
         if basic_auth.current_user().id == product.seller_id :
+
             confirmed_order.delete()
             return json_response(order.to_dict())
         else:
+
             return forbidden_access("You are not the owner of this product")
     else:
+
         return not_found("Order not found")

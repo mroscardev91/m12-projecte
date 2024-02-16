@@ -8,7 +8,8 @@ from flask_principal import Principal
 from logging.handlers import RotatingFileHandler
 import logging
 from flask_httpauth import HTTPBasicAuth
-
+from flask_wtf.csrf import CSRFProtect
+from flask import current_app
 
 
 db_manager = SQLAlchemy()
@@ -24,7 +25,7 @@ def create_app():
     basedir = os.path.abspath(os.path.dirname(__file__)) 
     app.debug = True
     # paràmetre que farà servir SQLAlchemy per a connectar-se
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + basedir + "/../database.db"
+    # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + basedir + "/../database.db"
     # mostre als logs les ordres SQL que s'executen
     app.config["SQLALCHEMY_ECHO"] = True
 

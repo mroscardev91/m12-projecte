@@ -17,14 +17,13 @@ def get_fitered_products():
     data = Product.to_dict_collection(products)
     return json_response(data)
 
-# Get product by id
+
 @api_bp.route('/products/<int:id>', methods=['GET'])
 def get_product(id):
     product = Product.get(id)
     data = Product.to_dict(product)
     return json_response(data)
 
-# Update product
 @api_bp.route('/products/<int:id>', methods=['PUT'])
 @token_auth.login_required
 def update_product(id):
