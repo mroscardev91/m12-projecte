@@ -1,67 +1,10 @@
-2024-01-19 17:08:47,378 ERROR: Exception on /products/read/6 [GET] [in C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1414]
-Traceback (most recent call last):
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_debugtoolbar\__init__.py", line 157, in dispatch_request
-    return view_func(**req.view_args)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_principal.py", line 199, in _decorated
-    rv = f(*args, **kw)
-  File "C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py", line 89, in product_read
-    current_app.logger.debug(product.to_json())
-NameError: name 'item' is not defined
-2024-01-19 17:08:47,378 ERROR: Exception on /products/read/6 [GET] [in C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1414]
-Traceback (most recent call last):
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2190, in wsgi_app
-    response = self.full_dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1486, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1484, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_debugtoolbar\__init__.py", line 157, in dispatch_request
-    return view_func(**req.view_args)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
-    return current_app.ensure_sync(func)(*args, **kwargs)
-  File "C:\Users\oscar\AppData\Local\Programs\Python\Python310\lib\site-packages\flask_principal.py", line 199, in _decorated
-    rv = f(*args, **kw)
-  File "C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py", line 89, in product_read
-    current_app.logger.debug(product.to_json())
-NameError: name 'item' is not defined
-2024-01-19 17:08:51,478 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:08:51,478 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:09:47,240 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:47,252 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:47,252 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,017 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,026 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,026 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:09:48,063 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:09:48,063 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:11:58,370 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:11:58,380 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:11:58,380 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-19 17:12:07,830 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-19 17:12:07,830 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:20:53,942 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:53,967 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:53,967 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:55,601 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:55,629 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:20:55,629 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:55]
-2024-01-26 15:21:01,323 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:21:01,323 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:21:37,889 INFO: Intent d'inici de sessió [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:52]
-2024-01-26 15:21:37,889 INFO: Intent d'inici de sessió [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_auth.py:52]
-2024-01-26 15:21:48,521 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:21:48,521 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
-2024-01-26 15:22:52,518 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:22:52,518 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:22:58,006 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:22:58,006 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:23:03,034 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
-2024-01-26 15:23:03,034 INFO: Accés a la pàgina d'administració d'usuaris [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_admin.py:32]
+2024-02-16 17:36:00,357 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:00,369 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:00,369 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:01,013 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:01,025 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:01,025 INFO: Aplicació iniciada [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\__init__.py:60]
+2024-02-16 17:36:05,169 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
+2024-02-16 17:36:05,169 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
+2024-02-16 17:36:13,442 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]
+2024-02-16 17:36:13,442 INFO: Accés a la pàgina principal [in C:\Users\oscar\OneDrive\Escritorio\DAW2\m12-projecte\wannapop\routes_main.py:20]

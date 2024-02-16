@@ -70,15 +70,16 @@ CREATE TABLE banned_products (
 );
 
 CREATE TABLE orders (
-    id INT PRIMARY KEY,
-    product_id INT NOT NULL,
-    buyer_id INT NOT NULL,
-    offer REAL NOT NULL,
-    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE (product_id, buyer_id),
-    FOREIGN KEY (product_id) REFERENCES products(id),
-    FOREIGN KEY (buyer_id) REFERENCES users(id)
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	product_id INTEGER NOT NULL,
+	buyer_id INTEGER NOT NULL,
+	offer DECIMAL(10, 2) NOT NULL,
+	created DATETIME NOT NULL DEFAULT (DATETIME('now')),
+	CONSTRAINT uc_product_buyer UNIQUE (product_id, buyer_id),
+	FOREIGN KEY (product_id) REFERENCES products(id),
+	FOREIGN KEY (buyer_id) REFERENCES users(id)
 );
+
 
 CREATE TABLE confirmed_orders (
     order_id INT PRIMARY KEY,

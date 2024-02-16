@@ -2,9 +2,10 @@ from . import db_manager as db
 from sqlalchemy.sql import func
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from datetime import datetime
+from datetime import datetime, timedelta ,timezone
 from .mixins import BaseMixin, SerializableMixin
 from sqlalchemy.orm import relationship
+import secrets
 
 class Product(db.Model, BaseMixin, SerializableMixin):
     __tablename__ = "products"
@@ -34,6 +35,8 @@ class User(db.Model, BaseMixin, UserMixin, SerializableMixin):
     role = db.Column(db.String(64))
     email_token = db.Column(db.String(20), unique=True, nullable=True)
     verified = db.Column(db.Boolean, default=False)
+    token = db.Column(db.String)
+    token_expiration = db.Column(db.DateTime, server_default=func.now()+ timedelta(days=90))
     
     
     def set_password(self, password):
@@ -41,6 +44,29 @@ class User(db.Model, BaseMixin, UserMixin, SerializableMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+    
+    def get_token(self, expires_in=3600):
+        now = datetime.now(timezone.utc)
+        if self.token and self.token_expiration.replace(
+                tzinfo=timezone.utc) > now + timedelta(seconds=60):
+            return self.token
+        self.token = secrets.token_hex(16)
+        self.token_expiration = now + timedelta(seconds=expires_in)
+        self.save()
+        return self.token
+
+    def revoke_token(self):
+        self.token_expiration = datetime.now(timezone.utc) - timedelta(
+            seconds=1)
+        self.save()
+
+    @staticmethod
+    def check_token(token):
+        user = User.get_filtered_by(token=token)
+        if user is None or user.token_expiration.replace(
+                tzinfo=timezone.utc) < datetime.now(timezone.utc):
+            return None
+        return user
 
 
 class BlockedUser(db.Model, BaseMixin, SerializableMixin):

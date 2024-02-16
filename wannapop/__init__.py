@@ -7,6 +7,9 @@ from flask_login import LoginManager
 from flask_principal import Principal
 from logging.handlers import RotatingFileHandler
 import logging
+from flask_httpauth import HTTPBasicAuth
+
+
 
 db_manager = SQLAlchemy()
 login_manager = LoginManager()
